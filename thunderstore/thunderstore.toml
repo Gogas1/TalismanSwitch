@@ -5,8 +5,8 @@ schemaVersion = "0.0.1"
 namespace = "gogas1"
 name = "TalismanSwitch"
 versionNumber = "1.0.0"
-description = "your mod description"
-websiteUrl = "link to the git repo"
+description = "Talisman switching mod"
+websiteUrl = "https://github.com/Gogas1/TalismanSwitch"
 containsNsfwContent = false
 
 [package.dependencies]
