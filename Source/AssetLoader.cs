@@ -20,7 +20,6 @@ namespace TalismanSwitch {
                 if (assetBundle == null) continue;
 
                 foreach (var assetName in assetBundle.GetAllAssetNames()) {
-                    Log.Warning(assetName);
                     var asset = assetBundle.LoadAsset(assetName);
                     if(asset == null) continue;
 
