@@ -28,5 +28,7 @@ namespace TalismanSwitch {
 
         internal const string CONFIG_ENTRY_LOCALIZATION_KEY = "NextTalismanKey";
         internal const string TRANSLATIONS_ASSET_PATH = "TalismanSwitch.Resources.translations.json";
+
+        internal const string TARGET_SOURCE_SPREADSHEET_NAME = "I2Loc TaoPunk Localization";
     }
 }

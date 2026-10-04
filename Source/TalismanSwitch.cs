@@ -69,7 +69,7 @@ public class TalismanSwitch : BaseUnityPlugin {
     }
 
     private void AddLocalizations() {
-        var targetSource = LocalizationManager.Sources[1];
+        var targetSource = LocalizationManager.Sources.FirstOrDefault(s => s.Google_SpreadsheetName == ModConfig.TARGET_SOURCE_SPREADSHEET_NAME);
 
         var translations = AssemblyUtils.GetEmbeddedJson<Dictionary<string, string>>(ModConfig.TRANSLATIONS_ASSET_PATH);
 
