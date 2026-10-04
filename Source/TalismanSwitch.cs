@@ -50,7 +50,10 @@ public class TalismanSwitch : BaseUnityPlugin {
             modInputHandler.OnSwitchTalismanPressed += talismanSwitchHandler.ChangeTalisman;
             settingsPatchingHandler = new();
 
-            AddLocalizations();
+            LocalizationManagerPatches.OnAddSource += LocalizationManagerPatches_OnAddSource;
+
+            
+
         } catch (Exception ex) {
             Log.Exception(ex);
             Destroy(this);
@@ -62,15 +65,19 @@ public class TalismanSwitch : BaseUnityPlugin {
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 
+    private void LocalizationManagerPatches_OnAddSource(LanguageSourceData source) {
+        if(source.Google_SpreadsheetName == ModConfig.TARGET_SOURCE_SPREADSHEET_NAME) {
+            AddLocalizations(source);
+        }
+    }
+
     private void InitInputHandler() {
         modInputHandler = new GameObject("ModInputHandler").AddComponent<ModInputHandler>();
         RCGLifeCycle.DontDestroyForever(modInputHandler.gameObject);
         modInputHandler.gameObject.hideFlags = HideFlags.HideAndDontSave;
     }
 
-    private void AddLocalizations() {
-        var targetSource = LocalizationManager.Sources.FirstOrDefault(s => s.Google_SpreadsheetName == ModConfig.TARGET_SOURCE_SPREADSHEET_NAME);
-
+    private void AddLocalizations(LanguageSourceData targetSource) {
         var translations = AssemblyUtils.GetEmbeddedJson<Dictionary<string, string>>(ModConfig.TRANSLATIONS_ASSET_PATH);
 
         if(translations == null) {
